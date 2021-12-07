@@ -1,5 +1,7 @@
-// Question: https://www.hackerrank.com/challenges/balanced-brackets/problem
-// Solution: https://www.youtube.com/watch?v=7ArHz8jPglw&ab_channel=HackerRank
+/* Queue Using Two Stacks
+ * Question: https://www.hackerrank.com/challenges/balanced-brackets/problem
+ * Solution: https://www.youtube.com/watch?v=7ArHz8jPglw&ab_channel=HackerRank
+ */
 
 function processData(input) {
   //Enter your code here

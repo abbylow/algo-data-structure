@@ -1,5 +1,7 @@
-// Question: https://www.hackerrank.com/challenges/balanced-brackets/problem
-// Solution: https://youtu.be/IhJGJG-9Dx8
+/* Balanced Brackets
+ * Question: https://www.hackerrank.com/challenges/balanced-brackets/problem
+ * Solution: https://youtu.be/IhJGJG-9Dx8
+ */
 'use strict';
 
 const fs = require('fs');
