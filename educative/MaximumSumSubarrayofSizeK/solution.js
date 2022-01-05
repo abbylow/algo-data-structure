@@ -10,8 +10,9 @@
 // Time Complexity: O(N + K) 
 // N: total number of elements in the array
 // K: the argument 
+// Space Complexity: O(1)
 // const max_sub_array_of_size_k = function(k, arr) {
-//   let currentMax = -1;
+//   let currentMax = 0;
 
 //   for(let counter = 0; counter < arr.length - k + 1; counter++) {
 //     let sum = 0;
@@ -28,9 +29,10 @@
 
 // Sliding Window
 // Time Complexity: O(N)
+// Space Complexity: O(1)
 // N: total number of elements in the array
 const max_sub_array_of_size_k = function(k, arr) {
-  let currentMax = -1;
+  let currentMax = 0;
   let sum = 0;
   let startIndex = 0; // the index of where the window starts
 
