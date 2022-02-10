@@ -7,40 +7,73 @@
  * one [1,5].
  */
 
-// Time Complexity: once the slow pointer enters the cycle, the fast pointer will meet the slow pointer in the same loop. Therefore, the time complexity of our algorithm will be O(N) where ‘N’ is the total number of nodes in the LinkedList.
-// Space Complexity: O(1)
-class Node {
-  constructor(value, next=null){
-    this.value = value;
-    this.next = next;
+// Time Complexity: O(N log N)
+// Space Complexity: O(N)
+class Interval {
+  constructor(start, end) {
+    this.start = start;
+    this.end = end;
+  }
+
+  get_interval() {
+    return "[" + this.start + ", " + this.end + "]";
   }
 }
 
-const has_cycle = function(head) {
-  let slow = head;
-  let fast = head;
-  while(fast !== null && fast.next != null) {
-    slow = slow.next;
-    fast = fast.next.next;
-    if (slow === fast) {
-      return true;
+
+const merge = function(intervals) {
+  if (intervals.length < 2) {
+    return intervals;
+  }
+
+  let merged = [];
+
+  intervals.sort((a, b) => a.start - b.start);
+
+  let start = intervals[0].start;
+  let end = intervals[0].end;
+
+  for (let k = 1; k < intervals.length; k++) {
+    // overlapping
+    if (intervals[k].start < end) {
+      end = Math.max(end, intervals[k].end);
+    } else {
+      merged.push(new Interval(start, end));
+      start = intervals[k].start;
+      end = intervals[k].end;
     }
   }
 
-  return false;
+  merged.push(new Interval(start, end));
+
+  return merged;
+};
+
+merged_intervals = merge([new Interval(1, 4), new Interval(2, 5), new Interval(7, 9)]);
+result = "";
+for(i=0; i < merged_intervals.length; i++) {
+  result += merged_intervals[i].get_interval() + " ";
 }
+console.log(`Merged intervals: ${result}`)
 
 
-head = new Node(1)
-head.next = new Node(2)
-head.next.next = new Node(3)
-head.next.next.next = new Node(4)
-head.next.next.next.next = new Node(5)
-head.next.next.next.next.next = new Node(6)
-console.log(`LinkedList has cycle: ${has_cycle(head)}`)
+merged_intervals = merge([new Interval(6, 7), new Interval(2, 4), new Interval(5, 9)]);
+result = "";
+for(i=0; i < merged_intervals.length; i++) {
+  result += merged_intervals[i].get_interval() + " ";
+}
+console.log(`Merged intervals: ${result}`)
 
-head.next.next.next.next.next.next = head.next.next
-console.log(`LinkedList has cycle: ${has_cycle(head)}`)
 
-head.next.next.next.next.next.next = head.next.next.next
-console.log(`LinkedList has cycle: ${has_cycle(head)}`)
+merged_intervals = merge([new Interval(1, 4), new Interval(2, 6), new Interval(3, 5)]);
+result = "";
+for(i=0; i < merged_intervals.length; i++) {
+  result += merged_intervals[i].get_interval() + " ";
+}
+console.log(`Merged intervals: ${result}`)
+
+
+// Expected Output
+// Merged intervals: [1, 5][7, 9]
+// Merged intervals: [2, 4][5, 9]
+// Merged intervals: [1, 6]
